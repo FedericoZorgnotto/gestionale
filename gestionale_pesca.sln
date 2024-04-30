@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negozio", "negozio\negozio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cassa", "cassa\cassa.csproj", "{929CD8A7-E6B9-4755-80FE-3246E5BCED97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginComponent", "Componenti\LoginComponent\LoginComponent.csproj", "{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{929CD8A7-E6B9-4755-80FE-3246E5BCED97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{929CD8A7-E6B9-4755-80FE-3246E5BCED97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{929CD8A7-E6B9-4755-80FE-3246E5BCED97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
