@@ -28,36 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.login1 = new LoginComponent.login();
+            this.loginComponent = new System.Windows.Forms.Integration.ElementHost();
+            this.login = new LoginComponent.login();
             this.SuspendLayout();
             // 
-            // elementHost1
+            // loginComponent
             // 
-            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHost1.Location = new System.Drawing.Point(0, 0);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(800, 450);
-            this.elementHost1.TabIndex = 0;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.login1;
+            this.loginComponent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loginComponent.Location = new System.Drawing.Point(0, 0);
+            this.loginComponent.Name = "loginComponent";
+            this.loginComponent.Size = new System.Drawing.Size(800, 450);
+            this.loginComponent.TabIndex = 0;
+            this.loginComponent.Text = "elementHost1";
+            this.loginComponent.Child = this.login;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.elementHost1);
+            this.Controls.Add(this.loginComponent);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
         private LoginComponent.login login1;
+        private System.Windows.Forms.Integration.ElementHost loginComponent;
+        private LoginComponent.login login;
     }
 }
 

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace DatabaseLibrary
+namespace Libreria
 {
-    public class DatabaseLibrary : DatabaseInterface
+    public class DatabaseLibrary
     {
         private SqlConnection _sqlConnection;
         private MySqlConnection _mySqlConnection;

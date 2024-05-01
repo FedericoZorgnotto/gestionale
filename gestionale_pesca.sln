@@ -6,12 +6,17 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "magazzino", "magazzino\magazzino.csproj", "{A97E0E82-0F09-4192-9EFA-FAB70ECB2C7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ufficio", "ufficio\ufficio.csproj", "{981046F9-867D-4DFD-8E1F-DA697C39C745}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1} = {B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negozio", "negozio\negozio.csproj", "{65223979-10EE-4378-8002-452C2B5462FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cassa", "cassa\cassa.csproj", "{929CD8A7-E6B9-4755-80FE-3246E5BCED97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginComponent", "Componenti\LoginComponent\LoginComponent.csproj", "{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria", "DatabaseLibrary\Libreria.csproj", "{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

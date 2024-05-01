@@ -90,6 +90,10 @@
       <Project>{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}</Project>
       <Name>LoginComponent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseLibrary\Libreria.csproj">
+      <Project>{b97db79f-86d5-4c9c-b32b-c5ec2ed176b1}</Project>
+      <Name>Libreria</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
