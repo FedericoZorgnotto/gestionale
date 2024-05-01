@@ -93,12 +93,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\UtenteController.cs" />
     <Compile Include="DatabaseLibrary.cs" />
+    <Compile Include="Model\Utente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\Ruoli.cs" />
+    <Compile Include="Utilities\HashUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

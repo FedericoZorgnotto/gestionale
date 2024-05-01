@@ -1,36 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Libreria;
+using Libreria.Controller;
+using Libreria.Model;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Libreria;
 
-namespace LoginComponent
+namespace ComponentiGrafiche
 {
-    /// <summary>
-    /// Logica di interazione per UserControl1.xaml
-    /// </summary>
-    public partial class login : UserControl
+
+    public partial class Login : UserControl
     {
-        private Libreria.DatabaseLibrary database;
-        public Libreria.DatabaseLibrary Database
+        private DatabaseLibrary _database;
+        private UtenteController controller;
+
+        public DatabaseLibrary database
         {
-            get { return database; }
-            set { database = value; }
+            get { return _database; }
+            set { _database = value; }
         }
-        
-        public login()
+
+        public Action<Utente> login { get; set; }
+
+        public Login()
         {
             InitializeComponent();
         }
@@ -39,18 +30,19 @@ namespace LoginComponent
         {
             string username = txtUsername.Text;
             string password = txtPassword.Password;
-            SqlParameter[] sqlParameters = new SqlParameter[2];
-            sqlParameters[0] = new SqlParameter("@username", username);
-            sqlParameters[1] = new SqlParameter("@password", password);
-            DataTable dt = database.EseguiQuery("SELECT * FROM utenti WHERE username = @username AND password = @password", sqlParameters);
-            if(dt.Rows.Count == 1)
+
+            UtenteController controller = new UtenteController(_database, "Utenti");
+            Utente utente = controller.Login(username, password);
+            if (utente != null)
             {
-                MessageBox.Show("Login effettuato con successo");
+                login?.Invoke(utente);
             }
             else
             {
                 MessageBox.Show("Login fallito");
             }
+
         }
+
     }
 }

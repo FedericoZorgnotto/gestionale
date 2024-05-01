@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 
 namespace Libreria
 {
@@ -42,22 +37,19 @@ namespace Libreria
             ErrorMessage = null;
         }
 
-        public bool Connetti()
+        public void Connetti()
         {
-            if(_sqlConnection != null)
+            if (_sqlConnection != null)
             {
                 try
                 {
                     if (_sqlConnection.State == System.Data.ConnectionState.Closed)
-                    {
                         _sqlConnection.Open();
-                    }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     ErrorMessage = $"Errore nell'apertura della connessione: {ex.Message}";
-                    return false;
+                    throw new Exception(ErrorMessage);
                 }
             }
             else
@@ -65,15 +57,12 @@ namespace Libreria
                 try
                 {
                     if (_mySqlConnection.State == System.Data.ConnectionState.Closed)
-                    {
                         _mySqlConnection.Open();
-                    }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     ErrorMessage = $"Errore nell'apertura della connessione: {ex.Message}";
-                    return false;
+                    throw new Exception(ErrorMessage);
                 }
             }
         }
@@ -100,8 +89,8 @@ namespace Libreria
         {
             Connetti();
             DataTable dataTable = new DataTable();
-            
-            if (_mySqlConnection != null)
+
+            if (_sqlConnection != null)
             {
                 try
                 {
@@ -120,6 +109,7 @@ namespace Libreria
                 catch (Exception ex)
                 {
                     ErrorMessage = $"Errore nell'esecuzione della query: {ex.Message}";
+                    throw new Exception(ErrorMessage);
                 }
                 finally
                 {
@@ -134,7 +124,10 @@ namespace Libreria
                     {
                         if (parameters != null)
                         {
-                            command.Parameters.AddRange(parameters);
+                            foreach (SqlParameter parameter in parameters)
+                            {
+                                command.Parameters.Add(new MySqlParameter(parameter.ParameterName, parameter.Value));
+                            }
                         }
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                         {
@@ -145,6 +138,7 @@ namespace Libreria
                 catch (Exception ex)
                 {
                     ErrorMessage = $"Errore nell'esecuzione della query: {ex.Message}";
+                    throw new Exception(ErrorMessage);
                 }
                 finally
                 {

@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negozio", "negozio\negozio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cassa", "cassa\cassa.csproj", "{929CD8A7-E6B9-4755-80FE-3246E5BCED97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginComponent", "Componenti\LoginComponent\LoginComponent.csproj", "{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentiGrafiche", "Componenti\LoginComponent\ComponentiGrafiche.csproj", "{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria", "DatabaseLibrary\Libreria.csproj", "{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}"
 EndProject
