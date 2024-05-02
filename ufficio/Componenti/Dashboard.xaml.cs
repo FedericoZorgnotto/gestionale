@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Controls;
 
-namespace ufficio
+namespace ufficio.Componenti
 {
     /// <summary>
     /// Logica di interazione per UserControl1.xaml
@@ -21,7 +21,7 @@ namespace ufficio
             this.utente = utente;
 
 
-            if(utente.Ruolo != Libreria.Model.Ruoli.Amministratore)
+            if (utente.Ruolo != Libreria.Model.Ruoli.Amministratore)
             {
                 btnUtenti.Visibility = System.Windows.Visibility.Hidden;
 
@@ -36,6 +36,22 @@ namespace ufficio
         private void btnLogout_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             logout?.Invoke();
+        }
+
+        private void btnUtenti_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var dashboard = this.Content;
+            this.Content = new PaginaUtenti(db, dashboard);
+        }
+
+        private void btnMagazini_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+        }
+
+        private void btnNegozi_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var dashboard = this.Content;
+            this.Content = new PaginaNegozi(db, dashboard);
         }
     }
 }

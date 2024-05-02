@@ -52,8 +52,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Componenti\paginaUtenti.xaml.cs">
-      <DependentUpon>paginaUtenti.xaml</DependentUpon>
+    <Compile Include="Componenti\PaginaNegozi.xaml.cs">
+      <DependentUpon>PaginaNegozi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\PaginaUtenti.xaml.cs">
+      <DependentUpon>PaginaUtenti.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -96,8 +99,8 @@
       <Project>{25EE7AA3-BE4D-4984-A630-9F320BB2EB74}</Project>
       <Name>ComponentiGrafiche</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DatabaseLibrary\Libreria.csproj">
-      <Project>{b97db79f-86d5-4c9c-b32b-c5ec2ed176b1}</Project>
+    <ProjectReference Include="..\Libreria\Libreria.csproj">
+      <Project>{efdaca09-ac84-4379-9336-05d88b7e1242}</Project>
       <Name>Libreria</Name>
     </ProjectReference>
   </ItemGroup>
@@ -106,7 +109,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Componenti\paginaUtenti.xaml">
+    <Page Include="Componenti\PaginaNegozi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\PaginaUtenti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

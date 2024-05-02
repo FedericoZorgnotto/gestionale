@@ -1,14 +1,17 @@
-﻿<UserControl x:Class="ufficio.Dashboard"
+﻿<UserControl x:Class="ufficio.Componenti.Dashboard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ufficio"
+             xmlns:local="clr-namespace:ufficio.Componenti"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button x:Name="btnUtenti" Content="UTENTI" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="97" Width="100"/>
-        <Button x:Name="btnLogout" Content="logout" HorizontalAlignment="Left" Margin="750,10,0,0" VerticalAlignment="Top" Click="btnLogout_Click"/>
+
+        <Button x:Name="btnUtenti" Content="UTENTI" HorizontalAlignment="Left" Margin="10,10,0,0" Width="100" Click="btnUtenti_Click" Height="97" VerticalAlignment="Top"/>
+        <Button x:Name="btnLogout" Content="logout" Margin="0,10,11,0" Click="btnLogout_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="39"/>
+        <Button x:Name="btnNegozi" Content="NEGOZI" HorizontalAlignment="Left" Margin="128,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnNegozi_Click"/>
+        <Button x:Name="btnMagazini" Content="MAGAZINI" HorizontalAlignment="Left" Margin="247,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnMagazini_Click"/>
 
     </Grid>
 </UserControl>

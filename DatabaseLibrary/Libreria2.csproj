@@ -7,8 +7,8 @@
     <ProjectGuid>{B97DB79F-86D5-4C9C-B32B-C5EC2ED176B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DatabaseLibrary</RootNamespace>
-    <AssemblyName>DatabaseLibrary</AssemblyName>
+    <RootNamespace>Libreria</RootNamespace>
+    <AssemblyName>Libreria</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -93,8 +93,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\NegozioController.cs" />
     <Compile Include="Controller\UtenteController.cs" />
     <Compile Include="DatabaseLibrary.cs" />
+    <Compile Include="Model\Negozio.cs" />
     <Compile Include="Model\Utente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Ruoli.cs" />

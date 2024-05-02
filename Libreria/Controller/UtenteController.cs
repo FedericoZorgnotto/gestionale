@@ -13,7 +13,7 @@ namespace Libreria.Controller
         private string tabella;
         private NegozioController negozioController;
 
-        public UtenteController(DatabaseLibrary db, string tabellaUtente="Utente", string tabellaNegozio = "Negozio")
+        public UtenteController(DatabaseLibrary db, string tabellaUtente = "Utente", string tabellaNegozio = "Negozio")
         {
             this.db = db;
             this.tabella = tabellaUtente;
@@ -41,7 +41,7 @@ namespace Libreria.Controller
                         Indirizzo = item["indirizzo"].ToString(),
                         Citta = item["citta"].ToString(),
                         Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), item["ruolo"].ToString()),
-                        Negozio = negozioController.GetNegozio(Convert.ToInt32(item["negozio"])),
+                        Negozio = negozioController.GetNegozio(int.TryParse(dt.Rows[0]["negozio"].ToString(), out int valore) ? Convert.ToInt32(dt.Rows[0]["negozio"]) : -1),
                         Note = item["note"].ToString()
                     });
                 }
@@ -55,7 +55,7 @@ namespace Libreria.Controller
 
         public Utente Login(string username, string password)
         {
-            password = HashUtility.calcoloSHA1(password);
+            password = HashUtility.CalcoloSHA1(password);
             try
             {
                 string query = $"SELECT * FROM {tabella} WHERE username = @username AND password = @password";
@@ -67,7 +67,7 @@ namespace Libreria.Controller
                 {
                     return null;
                 }
-
+                //errore qui
                 return new Utente()
                 {
                     id = (int)dt.Rows[0]["id"],
@@ -80,7 +80,7 @@ namespace Libreria.Controller
                     Indirizzo = dt.Rows[0]["indirizzo"].ToString(),
                     Citta = dt.Rows[0]["citta"].ToString(),
                     Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), dt.Rows[0]["ruolo"].ToString()),
-                    Negozio = negozioController.GetNegozio(Convert.ToInt32(dt.Rows[0]["negozio"])),
+                    Negozio = negozioController.GetNegozio(int.TryParse(dt.Rows[0]["negozio"].ToString(), out int valore) ? Convert.ToInt32(dt.Rows[0]["negozio"]):-1),
                     Note = dt.Rows[0]["note"].ToString()
                 };
             }

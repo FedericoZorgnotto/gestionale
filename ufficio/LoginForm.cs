@@ -2,7 +2,7 @@
 using Libreria.Model;
 using System;
 using System.Windows.Forms;
-
+using ufficio.Componenti;
 namespace ufficio
 {
     public partial class LoginForm : Form
@@ -22,7 +22,7 @@ namespace ufficio
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            db = new DatabaseLibrary("127.0.0.1", "3306", "pesca", "root", "1234");
+            db = new Libreria.DatabaseLibrary("127.0.0.1", "3306", "pesca", "root", "1234");
 
             creaLogin();
         }

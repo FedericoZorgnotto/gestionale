@@ -86,8 +86,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DatabaseLibrary\Libreria.csproj">
-      <Project>{b97db79f-86d5-4c9c-b32b-c5ec2ed176b1}</Project>
+    <ProjectReference Include="..\..\Libreria\Libreria.csproj">
+      <Project>{efdaca09-ac84-4379-9336-05d88b7e1242}</Project>
       <Name>Libreria</Name>
     </ProjectReference>
   </ItemGroup>

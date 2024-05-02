@@ -10,10 +10,10 @@ namespace ComponentiGrafiche
 
     public partial class Login : UserControl
     {
-        private DatabaseLibrary _database;
+        private Libreria.DatabaseLibrary _database;
         private UtenteController controller;
 
-        public DatabaseLibrary database
+        public Libreria.DatabaseLibrary database
         {
             get { return _database; }
             set { _database = value; }

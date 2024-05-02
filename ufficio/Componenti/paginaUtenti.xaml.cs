@@ -15,14 +15,43 @@ using System.Windows.Shapes;
 
 namespace ufficio.Componenti
 {
-    /// <summary>
-    /// Logica di interazione per paginaUtenti.xaml
-    /// </summary>
-    public partial class paginaUtenti : UserControl
+    public partial class PaginaUtenti : UserControl
     {
-        public paginaUtenti()
+        Libreria.DatabaseLibrary db;
+        object dashboard;
+
+        public PaginaUtenti(Libreria.DatabaseLibrary db, object dashboard)
         {
             InitializeComponent();
+            this.db = db;
+            this.dashboard = dashboard;
+            caricaDgvUtenti();
+
+        }
+
+        private void caricaDgvUtenti()
+        {
+            Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
+            dgvUtenti.ItemsSource = utenteController.GetUtenti();
+        }
+
+        private void btnEsci_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = dashboard;
+        }
+
+        private void btnSalva_Click(object sender, RoutedEventArgs e)
+        {
+            List<Libreria.Model.Utente> utenti = dgvUtenti.ItemsSource.Cast<Libreria.Model.Utente>().ToList();
+
+            Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
+            utenteController.SalvaUtenti(utenti);
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgvUtenti.Columns[0].Visibility = Visibility.Hidden;
+            dgvUtenti.Columns[2].Visibility = Visibility.Hidden;
         }
     }
 }
