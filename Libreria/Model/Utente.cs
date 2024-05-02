@@ -13,6 +13,7 @@
         public string Citta { get; set; }
         public Ruoli Ruolo { get; set; }
         public Negozio Negozio { get; set; }
+        public Magazzino Magazzino { get; set; }
         public string Note { get; set; }
     }
 }

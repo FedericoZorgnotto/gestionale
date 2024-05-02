@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+//TODO: aggiungere la possibilità di cambiare password agli utenti
+//TODO: implementare dropbox per negozio e magazzino
+
 namespace ufficio.Componenti
 {
     public partial class PaginaUtenti : UserControl

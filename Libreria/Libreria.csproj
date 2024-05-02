@@ -93,9 +93,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\MagazzinoController.cs" />
     <Compile Include="Controller\NegozioController.cs" />
     <Compile Include="Controller\UtenteController.cs" />
     <Compile Include="DatabaseLibrary.cs" />
+    <Compile Include="Model\Magazzino.cs" />
     <Compile Include="Model\Negozio.cs" />
     <Compile Include="Model\Ruoli.cs" />
     <Compile Include="Model\Utente.cs" />

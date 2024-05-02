@@ -2,11 +2,10 @@
 using System;
 using System.Windows.Controls;
 
+//TODO:pagina per modificare informazioni catena di negozi: nome, logo, ...
+
 namespace ufficio.Componenti
 {
-    /// <summary>
-    /// Logica di interazione per UserControl1.xaml
-    /// </summary>
     public partial class Dashboard : UserControl
     {
         private Libreria.DatabaseLibrary db;
@@ -46,6 +45,8 @@ namespace ufficio.Componenti
 
         private void btnMagazini_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            var dashboard = this.Content;
+            this.Content = new PaginaMagazzini(db, dashboard);
         }
 
         private void btnNegozi_Click(object sender, System.Windows.RoutedEventArgs e)

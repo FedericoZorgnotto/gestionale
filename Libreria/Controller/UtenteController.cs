@@ -10,21 +10,23 @@ namespace Libreria.Controller
     public class UtenteController
     {
         private DatabaseLibrary db;
-        private string tabella;
+        private string tabellaUtenti;
         private NegozioController negozioController;
+        private MagazzinoController magazzinoController;
 
-        public UtenteController(DatabaseLibrary db, string tabellaUtente = "Utente", string tabellaNegozio = "Negozio")
+        public UtenteController(DatabaseLibrary db, string tabellaUtente = "Utenti", string tabellaNegozio = "Negozi", string tabellaMagazzino="Magazzini")
         {
             this.db = db;
-            this.tabella = tabellaUtente;
+            this.tabellaUtenti = tabellaUtente;
             negozioController = new NegozioController(db, tabellaNegozio);
+            magazzinoController = new MagazzinoController(db, tabellaMagazzino);
         }
 
         public IEnumerable GetUtenti()
         {
             try
             {
-                string query = $"SELECT * FROM {tabella}";
+                string query = $"SELECT * FROM {tabellaUtenti}";
                 DataTable dt = db.EseguiQuery(query);
                 ArrayList utenti = new ArrayList();
                 foreach (DataRow item in dt.Rows)
@@ -41,7 +43,8 @@ namespace Libreria.Controller
                         Indirizzo = item["indirizzo"].ToString(),
                         Citta = item["citta"].ToString(),
                         Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), item["ruolo"].ToString()),
-                        Negozio = negozioController.GetNegozio(int.TryParse(dt.Rows[0]["negozio"].ToString(), out int valore) ? Convert.ToInt32(dt.Rows[0]["negozio"]) : -1),
+                        Negozio = negozioController.GetNegozio(int.TryParse(dt.Rows[0]["negozio"].ToString(), out int valoreNegozio) ? Convert.ToInt32(dt.Rows[0]["negozio"]) : -1),
+                        Magazzino = magazzinoController.GetMagazzino(int.TryParse(dt.Rows[0]["magazzino"].ToString(), out int valoreMagazzino) ? Convert.ToInt32(dt.Rows[0]["magazzino"]) : -1),
                         Note = item["note"].ToString()
                     });
                 }
@@ -58,7 +61,7 @@ namespace Libreria.Controller
             password = HashUtility.CalcoloSHA1(password);
             try
             {
-                string query = $"SELECT * FROM {tabella} WHERE username = @username AND password = @password";
+                string query = $"SELECT * FROM {tabellaUtenti} WHERE username = @username AND password = @password";
                 SqlParameter[] sqlParameters = new SqlParameter[2];
                 sqlParameters[0] = new SqlParameter("@username", username);
                 sqlParameters[1] = new SqlParameter("@password", password);
@@ -80,7 +83,8 @@ namespace Libreria.Controller
                     Indirizzo = dt.Rows[0]["indirizzo"].ToString(),
                     Citta = dt.Rows[0]["citta"].ToString(),
                     Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), dt.Rows[0]["ruolo"].ToString()),
-                    Negozio = negozioController.GetNegozio(int.TryParse(dt.Rows[0]["negozio"].ToString(), out int valore) ? Convert.ToInt32(dt.Rows[0]["negozio"]):-1),
+                    Negozio = negozioController.GetNegozio(int.TryParse(dt.Rows[0]["negozio"].ToString(), out int valoreNegozio) ? Convert.ToInt32(dt.Rows[0]["negozio"]):-1),
+                    Magazzino = magazzinoController.GetMagazzino(int.TryParse(dt.Rows[0]["magazzino"].ToString(), out int valoreMagazzino) ? Convert.ToInt32(dt.Rows[0]["magazzino"]) : -1),
                     Note = dt.Rows[0]["note"].ToString()
                 };
             }
@@ -94,13 +98,13 @@ namespace Libreria.Controller
         {
             try
             {
-                string query = $"DELETE FROM {tabella}";
+                string query = $"DELETE FROM {tabellaUtenti}";
                 db.EseguiQuery(query);
 
                 foreach (Utente item in utenti)
                 {
-                    query = $"INSERT INTO {tabella} (id, username, password, nome, cognome, email, telefono, indirizzo, citta, ruolo, negozio, note) " +
-                        $"VALUES (@id, @username, @password, @nome, @cognome, @email, @telefono, @indirizzo, @citta, @ruolo, @negozio, @note)";
+                    query = $"INSERT INTO {tabellaUtenti} (id, username, password, nome, cognome, email, telefono, indirizzo, citta, ruolo, negozio, magazzino, note) " +
+                        $"VALUES (@id, @username, @password, @nome, @cognome, @email, @telefono, @indirizzo, @citta, @ruolo, @negozio, @magazzino, @note)";
                     SqlParameter[] sqlParameters = new SqlParameter[12];
                     sqlParameters[0] = new SqlParameter("@id", Guid.NewGuid().ToString());
                     sqlParameters[1] = new SqlParameter("@username", item.Username);
@@ -112,8 +116,9 @@ namespace Libreria.Controller
                     sqlParameters[7] = new SqlParameter("@indirizzo", item.Indirizzo);
                     sqlParameters[8] = new SqlParameter("@citta", item.Citta);
                     sqlParameters[9] = new SqlParameter("@ruolo", ((int)item.Ruolo));
-                    sqlParameters[10] = new SqlParameter("@negozio", item.Negozio.IdNegozio);
-                    sqlParameters[11] = new SqlParameter("@note", item.Note);
+                    sqlParameters[10] = new SqlParameter("@negozio", item.Negozio.Id);
+                    sqlParameters[11] = new SqlParameter("@magazzino", item.Magazzino.Id);
+                    sqlParameters[12] = new SqlParameter("@note", item.Note);
                     db.EseguiQuery(query, sqlParameters);
                 }
             }

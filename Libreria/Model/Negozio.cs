@@ -2,7 +2,7 @@
 {
     public class Negozio
     {
-        public int IdNegozio { get; set; }
+        public int Id { get; set; }
         public string NomeNegozio { get; set; }
         public string Indirizzo { get; set; }
         public string Citta { get; set; }
@@ -15,7 +15,7 @@
 
         public Negozio(int idNegozio, string nomeNegozio, string indirizzo, string citta, string telefono, string note)
         {
-            IdNegozio = idNegozio;
+            Id = idNegozio;
             NomeNegozio = nomeNegozio;
             Indirizzo = indirizzo;
             Citta = citta;
