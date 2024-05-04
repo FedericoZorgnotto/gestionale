@@ -29,8 +29,8 @@ namespace Libreria.Controller
                 {
                     negozi.Add(new Negozio()
                     {
-                        Id = Convert.ToInt32(item["idNegozio"]),
-                        NomeNegozio = item["nomeNegozio"].ToString(),
+                        Id = Convert.ToInt32(item["id"]),
+                        nome = item["nome"].ToString(),
                         Indirizzo = item["indirizzo"].ToString(),
                         Citta = item["citta"].ToString(),
                         Telefono = item["telefono"].ToString(),
@@ -48,19 +48,25 @@ namespace Libreria.Controller
         {
             try
             {
-                string query = $"DELETE FROM {nomeTabella}";
-                db.EseguiQuery(query);
                 foreach (Negozio item in negozi)
                 {
-                    query = $"INSERT INTO {nomeTabella} VALUES (@id, @nome, @indirizzo, @citta, @telefono, @note)";
-                    SqlParameter[] sqlParameters = new SqlParameter[6];
+                    string query = $"SELECT * FROM {nomeTabella} WHERE id = @id";
+                    SqlParameter[] sqlParameters = new SqlParameter[1];
                     sqlParameters[0] = new SqlParameter("@id", item.Id);
-                    sqlParameters[1] = new SqlParameter("@nome", item.NomeNegozio);
+                    DataTable dt = db.EseguiQuery(query, sqlParameters);
+                    if (dt.Rows.Count == 0)
+                        query = $"INSERT INTO {nomeTabella} VALUES (@id, @nome, @indirizzo, @citta, @telefono, @note)";
+                    else
+                        query = $"UPDATE {nomeTabella} SET nome = @nome, indirizzo = @indirizzo, citta = @citta, telefono = @telefono, note = @note WHERE id = @id";
+                    sqlParameters = new SqlParameter[6];
+                    sqlParameters[0] = new SqlParameter("@id", item.Id);
+                    sqlParameters[1] = new SqlParameter("@nome", item.nome);
                     sqlParameters[2] = new SqlParameter("@indirizzo", item.Indirizzo);
                     sqlParameters[3] = new SqlParameter("@citta", item.Citta);
                     sqlParameters[4] = new SqlParameter("@telefono", item.Telefono);
                     sqlParameters[5] = new SqlParameter("@note", item.Note);
                     db.EseguiQuery(query, sqlParameters);
+
                 }
             }
             catch (Exception ex)
@@ -87,8 +93,8 @@ namespace Libreria.Controller
                 }
                 return new Negozio()
                 {
-                    Id = Convert.ToInt32(dt.Rows[0]["idNegozio"]),
-                    NomeNegozio = dt.Rows[0]["nomeNegozio"].ToString(),
+                    Id = Convert.ToInt32(dt.Rows[0]["id"]),
+                    nome = dt.Rows[0]["nome"].ToString(),
                     Indirizzo = dt.Rows[0]["indirizzo"].ToString(),
                     Citta = dt.Rows[0]["citta"].ToString(),
                     Telefono = dt.Rows[0]["telefono"].ToString(),

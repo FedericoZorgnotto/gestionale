@@ -2,7 +2,10 @@
 using System;
 using System.Windows.Controls;
 
-//TODO:pagina per modificare informazioni catena di negozi: nome, logo, ...
+//TODO: pagina per modificare informazioni catena di negozi: nome, logo, ...
+//TODO: pagina prodotti: possibilità di aggiungere un'ordine, visualizzazione per ordini,
+//modificare il prezzo dei prodotti, chiederne lo spostamento e
+//stabilire quanti prodotti devono esser presenti per ogni punto vendita
 
 namespace ufficio.Componenti
 {

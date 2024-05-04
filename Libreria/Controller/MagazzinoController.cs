@@ -50,12 +50,17 @@ namespace Libreria.Controller
         {
             try
             {
-                string query = $"DELETE FROM {nomeTabella}";
-                db.EseguiQuery(query);
                 foreach (Magazzino item in magazzini)
                 {
-                    query = $"INSERT INTO {nomeTabella} VALUES (@id, @nome, @indirizzo, @citta, @telefono, @note)";
-                    SqlParameter[] sqlParameters = new SqlParameter[6];
+                    string query = $"SELECT * FROM {nomeTabella} WHERE id = @id";
+                    SqlParameter[] sqlParameters = new SqlParameter[1];
+                    sqlParameters[0] = new SqlParameter("@id", item.Id);
+                    DataTable dt = db.EseguiQuery(query, sqlParameters);
+                    if (dt.Rows.Count == 0)
+                        query = $"INSERT INTO {nomeTabella} VALUES (@id, @nome, @indirizzo, @citta, @telefono, @note)";
+                    else
+                        query = $"UPDATE {nomeTabella} SET nome = @nome, indirizzo = @indirizzo, citta = @citta, telefono = @telefono, note = @note WHERE id = @id";
+                    sqlParameters = new SqlParameter[6];
                     sqlParameters[0] = new SqlParameter("@id", item.Id);
                     sqlParameters[1] = new SqlParameter("@nome", item.Nome);
                     sqlParameters[2] = new SqlParameter("@indirizzo", item.Indirizzo);
