@@ -49,6 +49,8 @@ namespace ufficio.Componenti
 
             MagazzinoController magazzinoController = new MagazzinoController(db, "Magazzini");
             magazzinoController.SalvaMagazzini(magazzini);
+            MessageBox.Show("Impostazioni salvate correttamente");
+
         }
     }
 }

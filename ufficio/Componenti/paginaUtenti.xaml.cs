@@ -68,6 +68,7 @@ namespace ufficio.Componenti
 
             Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
             utenteController.SalvaUtenti(utenti);
+            MessageBox.Show("Impostazioni salvate correttamente");
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)

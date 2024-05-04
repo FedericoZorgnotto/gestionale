@@ -4,6 +4,7 @@ using Libreria.Model;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace ComponentiGrafiche
 {
@@ -21,9 +22,19 @@ namespace ComponentiGrafiche
 
         public Action<Utente> login { get; set; }
 
-        public Login()
+        public Login(DatabaseLibrary database)
         {
+            _database = database;
             InitializeComponent();
+            ImpostazioniController impostazioni = new ImpostazioniController(_database, "impostazioni");
+            impostazioni.CaricaImpostazioni();
+
+            byte[] binaryData = Convert.FromBase64String(Impostazioni.logoBase64);
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = new System.IO.MemoryStream(binaryData);
+            bitmapImage.EndInit();
+            imgLogo.Source = bitmapImage;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -41,8 +52,11 @@ namespace ComponentiGrafiche
             {
                 MessageBox.Show("Login fallito");
             }
-
         }
 
+        private void imgLogo_Initialized(object sender, EventArgs e)
+        {
+
+        }
     }
 }

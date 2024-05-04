@@ -53,5 +53,6 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Image x:Name="imgLogo" Margin="350,27,350,323" Initialized="imgLogo_Initialized"/>
     </Grid>
 </UserControl>

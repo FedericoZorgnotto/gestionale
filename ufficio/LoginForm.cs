@@ -1,6 +1,10 @@
 ﻿using Libreria;
+using Libreria.Controller;
 using Libreria.Model;
 using System;
+using System.Drawing;
+using System.IO;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 using ufficio.Componenti;
 namespace ufficio
@@ -23,7 +27,6 @@ namespace ufficio
         private void Form1_Load(object sender, EventArgs e)
         {
             db = new Libreria.DatabaseLibrary("127.0.0.1", "3306", "pesca", "root", "1234");
-
             creaLogin();
         }
 
@@ -31,9 +34,8 @@ namespace ufficio
         {
 
 
-            login = new ComponentiGrafiche.Login();
+            login = new ComponentiGrafiche.Login(db);
             login.login += loggato;
-            login.database = db;
             loginHost = new System.Windows.Forms.Integration.ElementHost();
 
             loginHost.Name = "LoginHost";

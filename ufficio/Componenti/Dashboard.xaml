@@ -9,9 +9,10 @@
     <Grid>
 
         <Button x:Name="btnUtenti" Content="UTENTI" HorizontalAlignment="Left" Margin="10,10,0,0" Width="100" Click="btnUtenti_Click" Height="97" VerticalAlignment="Top"/>
-        <Button x:Name="btnLogout" Content="logout" Margin="0,10,11,0" Click="btnLogout_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="39"/>
         <Button x:Name="btnNegozi" Content="NEGOZI" HorizontalAlignment="Left" Margin="128,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnNegozi_Click"/>
         <Button x:Name="btnMagazini" Content="MAGAZINI" HorizontalAlignment="Left" Margin="247,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnMagazini_Click"/>
+        <Button x:Name="btnImpostazioni" Content="IMPOSTAZIONI" HorizontalAlignment="Left" Margin="365,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnImpostazioni_Click"/>
+        <Button x:Name="btnLogout" Content="logout" Margin="0,10,11,0" Click="btnLogout_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="39"/>
 
     </Grid>
 </UserControl>

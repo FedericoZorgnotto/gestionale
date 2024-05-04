@@ -10,7 +10,7 @@
         public string Note { get; set; }
 
         public Negozio()
-        {   
+        {
         }
 
         public Negozio(int idNegozio, string nomeNegozio, string indirizzo, string citta, string telefono, string note)

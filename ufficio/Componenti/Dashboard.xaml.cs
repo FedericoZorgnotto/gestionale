@@ -2,7 +2,6 @@
 using System;
 using System.Windows.Controls;
 
-//TODO: pagina per modificare informazioni catena di negozi: nome, logo, ...
 //TODO: pagina prodotti: possibilità di aggiungere un'ordine, visualizzazione per ordini,
 //modificare il prezzo dei prodotti, chiederne lo spostamento e
 //stabilire quanti prodotti devono esser presenti per ogni punto vendita
@@ -26,6 +25,7 @@ namespace ufficio.Componenti
             if (utente.Ruolo != Libreria.Model.Ruoli.Amministratore)
             {
                 btnUtenti.Visibility = System.Windows.Visibility.Hidden;
+                btnImpostazioni.Visibility = System.Windows.Visibility.Hidden;
 
             }
         }
@@ -56,6 +56,12 @@ namespace ufficio.Componenti
         {
             var dashboard = this.Content;
             this.Content = new PaginaNegozi(db, dashboard);
+        }
+
+        private void btnImpostazioni_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var dashboard = this.Content;
+            this.Content = new PaginaImpostazioni(db, dashboard);
         }
     }
 }

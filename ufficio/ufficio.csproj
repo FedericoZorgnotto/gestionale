@@ -52,6 +52,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componenti\PaginaImpostazioni.xaml.cs">
+      <DependentUpon>PaginaImpostazioni.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Componenti\PaginaMagazzini.xaml.cs">
       <DependentUpon>PaginaMagazzini.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Componenti\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\PaginaImpostazioni.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

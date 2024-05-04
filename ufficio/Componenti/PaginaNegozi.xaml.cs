@@ -47,6 +47,8 @@ namespace ufficio.Componenti
 
             NegozioController negozioController = new NegozioController(db, "Negozi");
             negozioController.SalvaNegozi(negozi);
+            MessageBox.Show("Impostazioni salvate correttamente");
+
         }
     }
 }
