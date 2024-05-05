@@ -5,9 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
-//TODO: aggiungere la possibilità di cambiare password agli utenti
 //TODO: comprendere perché non vengono visualizzati i negozi e i magazzini all'avvio nelle combobox
 namespace ufficio.Componenti
 {
@@ -31,8 +29,52 @@ namespace ufficio.Componenti
 
         private void caricaDgvUtenti()
         {
+            dgvUtenti.Columns.Clear();
             Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
             dgvUtenti.ItemsSource = utenteController.GetUtenti();
+
+            ObservableCollection<DataGridColumn> colonne = dgvUtenti.Columns;
+            int lunghezza = colonne.Count;
+
+            DataGridTextColumn colonnaNuovaPassword = new DataGridTextColumn();
+            colonnaNuovaPassword.Header = "Nuova Password";
+            colonne.Add(colonnaNuovaPassword);
+
+            DataGridTemplateColumn colonnaElimina = new DataGridTemplateColumn();
+            colonnaElimina.Header = "Elimina";
+
+            FrameworkElementFactory buttonFactory = new FrameworkElementFactory(typeof(Button));
+            buttonFactory.SetValue(Button.ContentProperty, "Elimina");
+            buttonFactory.AddHandler(Button.ClickEvent, new RoutedEventHandler(DeleteButton_Click));
+            DataTemplate cellTemplate = new DataTemplate { VisualTree = buttonFactory };
+
+            colonnaElimina.CellTemplate = cellTemplate;
+            dgvUtenti.Columns.Add(colonnaElimina);
+
+            for (int i = 0; i < lunghezza; i++)
+            {
+                if (colonne[i].Header.ToString() == "Password" || colonne[i].Header.ToString() == "id")
+                    colonne[i].Visibility = Visibility.Hidden;
+
+                if (colonne[i].Header.ToString() == "Negozio")
+                {
+                    DataGridComboBoxColumn colonnaNegozio = new DataGridComboBoxColumn();
+                    colonnaNegozio.Header = "Negozio";
+                    colonnaNegozio.DisplayMemberPath = "nome";
+                    colonnaNegozio.SelectedValuePath = "Id";
+                    colonnaNegozio.ItemsSource = negozioController.GetNegozi();
+                    colonne[i] = colonnaNegozio;
+                }
+                if (colonne[i].Header.ToString() == "Magazzino")
+                {
+                    DataGridComboBoxColumn colonnaMagazzino = new DataGridComboBoxColumn();
+                    colonnaMagazzino.Header = "Magazzino";
+                    colonnaMagazzino.DisplayMemberPath = "Nome";
+                    colonnaMagazzino.SelectedValuePath = "Id";
+                    colonnaMagazzino.ItemsSource = magazzinoController.GetMagazzini();
+                    colonne[i] = colonnaMagazzino;
+                }
+            }
         }
 
         private void dgvUtenti_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -46,7 +88,7 @@ namespace ufficio.Componenti
 
                 utente.Negozio = negozioSelezionato;
             }
-            if(e.Column.Header.ToString() == "Magazzino")
+            if (e.Column.Header.ToString() == "Magazzino")
             {
                 ComboBox cmb = e.EditingElement as ComboBox;
                 Magazzino magazzinoSelezionato = cmb.SelectedItem as Magazzino;
@@ -54,6 +96,15 @@ namespace ufficio.Componenti
                 Utente utente = dgvUtenti.SelectedItem as Utente;
 
                 utente.Magazzino = magazzinoSelezionato;
+            }
+            if (e.Column.Header.ToString() == "Nuova Password")
+            {
+                TextBox txt = e.EditingElement as TextBox;
+                string nuovaPassword = txt.Text;
+
+                Utente utente = dgvUtenti.SelectedItem as Utente;
+                utente.Password = Libreria.Utilities.HashUtility.CalcoloSHA1(nuovaPassword);
+
             }
         }
 
@@ -73,32 +124,18 @@ namespace ufficio.Componenti
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<DataGridColumn> colonne = dgvUtenti.Columns;
-            int lunghezza = colonne.Count;
+            
 
-            for (int i = 0; i < lunghezza; i++)
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Utente utente = dgvUtenti.SelectedItem as Utente;
+            if (utente != null)
             {
-                if (colonne[i].Header.ToString() == "Password" || colonne[i].Header.ToString() == "id")
-                    colonne[i].Visibility = Visibility.Hidden;
-
-                if (colonne[i].Header.ToString() == "Negozio")
-                {
-                    DataGridComboBoxColumn colonnaNegozio = new DataGridComboBoxColumn();
-                    colonnaNegozio.Header = "Negozio";
-                    colonnaNegozio.DisplayMemberPath = "nome";
-                    colonnaNegozio.SelectedValuePath = "Id";
-                    colonnaNegozio.ItemsSource = negozioController.GetNegozi();
-                    colonne[i] = colonnaNegozio;
-                }
-                if(colonne[i].Header.ToString() == "Magazzino")
-                {
-                    DataGridComboBoxColumn colonnaMagazzino = new DataGridComboBoxColumn();
-                    colonnaMagazzino.Header = "Magazzino";
-                    colonnaMagazzino.DisplayMemberPath = "Nome";
-                    colonnaMagazzino.SelectedValuePath = "Id";
-                    colonnaMagazzino.ItemsSource = magazzinoController.GetMagazzini();
-                    colonne[i] = colonnaMagazzino;
-                }
+                Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
+                utenteController.EliminaUtente(utente);
+                caricaDgvUtenti();
             }
         }
     }

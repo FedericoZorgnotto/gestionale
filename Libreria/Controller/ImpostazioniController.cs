@@ -1,10 +1,6 @@
 ﻿using Libreria.Model;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Libreria.Controller
 {
@@ -31,7 +27,7 @@ namespace Libreria.Controller
                 throw new Exception(ex.Message);
             }
         }
-       public void CaricaImpostazioni()
+        public void CaricaImpostazioni()
         {
             try
             {

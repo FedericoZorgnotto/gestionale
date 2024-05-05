@@ -1,9 +1,9 @@
 ﻿using Libreria.Model;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections.Generic;
 
 namespace Libreria.Controller
 {
@@ -16,6 +16,24 @@ namespace Libreria.Controller
         {
             this.db = db;
             this.nomeTabella = nomeTabella;
+        }
+
+        public void EliminaNegozio(Negozio negozio)
+        {
+            if (negozio != null)
+            {
+                try
+                {
+                    string query = $"DELETE FROM {nomeTabella} WHERE id = @id";
+                    SqlParameter[] sqlParameters = new SqlParameter[1];
+                    sqlParameters[0] = new SqlParameter("@id", negozio.Id);
+                    db.EseguiQuery(query, sqlParameters);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
         }
 
         public IEnumerable GetNegozi()

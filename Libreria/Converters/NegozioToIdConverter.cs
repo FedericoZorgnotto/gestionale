@@ -1,8 +1,6 @@
-﻿using Libreria.Controller;
-using Libreria.Model;
+﻿using Libreria.Model;
 using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
 namespace Libreria.Converters

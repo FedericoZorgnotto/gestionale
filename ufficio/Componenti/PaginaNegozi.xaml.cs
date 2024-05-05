@@ -1,20 +1,10 @@
-﻿using System;
+﻿using Libreria;
+using Libreria.Controller;
+using Libreria.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Libreria;
-using Libreria.Model;
-using Libreria.Controller;
 namespace ufficio.Componenti
 {
     public partial class PaginaNegozi : UserControl
@@ -32,8 +22,20 @@ namespace ufficio.Componenti
         }
         private void caricaDgvNegozi()
         {
+            dgvNegozi.Columns.Clear();
             NegozioController negozioController = new NegozioController(db, "Negozi");
             dgvNegozi.ItemsSource = negozioController.GetNegozi();
+
+            DataGridTemplateColumn colonnaElimina = new DataGridTemplateColumn();
+            colonnaElimina.Header = "Elimina";
+
+            FrameworkElementFactory buttonFactory = new FrameworkElementFactory(typeof(Button));
+            buttonFactory.SetValue(Button.ContentProperty, "Elimina");
+            buttonFactory.AddHandler(Button.ClickEvent, new RoutedEventHandler(DeleteButton_Click));
+            DataTemplate cellTemplate = new DataTemplate { VisualTree = buttonFactory };
+
+            colonnaElimina.CellTemplate = cellTemplate;
+            dgvNegozi.Columns.Add(colonnaElimina);
         }
 
         private void btnEsci_Click(object sender, RoutedEventArgs e)
@@ -49,6 +51,16 @@ namespace ufficio.Componenti
             negozioController.SalvaNegozi(negozi);
             MessageBox.Show("Impostazioni salvate correttamente");
 
+        }
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Negozio negozio = (Negozio)dgvNegozi.SelectedItem;
+            if (negozio != null)
+            {
+                NegozioController negozioController = new NegozioController(db, "Negozi");
+                negozioController.EliminaNegozio(negozio);
+                caricaDgvNegozi();
+            }
         }
     }
 }

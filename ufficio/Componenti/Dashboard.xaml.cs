@@ -1,5 +1,4 @@
-﻿using ComponentiGrafiche;
-using System;
+﻿using System;
 using System.Windows.Controls;
 
 //TODO: pagina prodotti: possibilità di aggiungere un'ordine, visualizzazione per ordini,

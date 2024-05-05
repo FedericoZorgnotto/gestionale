@@ -18,6 +18,24 @@ namespace Libreria.Controller
             this.nomeTabella = nomeTabella;
         }
 
+        public void EliminaMagazzino(Magazzino magazzino)
+        {
+            if (magazzino != null)
+            {
+                try
+                {
+                    string query = $"DELETE FROM {nomeTabella} WHERE id = @id";
+                    SqlParameter[] sqlParameters = new SqlParameter[1];
+                    sqlParameters[0] = new SqlParameter("@id", magazzino.Id);
+                    db.EseguiQuery(query, sqlParameters);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         public IEnumerable GetMagazzini()
         {
             try
