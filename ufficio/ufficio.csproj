@@ -57,7 +57,6 @@
     <ManifestCertificateThumbprint>EB08F85C4ED3A39E14CDCF60C09CFA31B3E1E1B8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ufficio_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -89,6 +88,9 @@
   <ItemGroup>
     <Compile Include="Componenti\PaginaImpostazioni.xaml.cs">
       <DependentUpon>PaginaImpostazioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\PaginaInventario.xaml.cs">
+      <DependentUpon>PaginaInventario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Componenti\PaginaMagazzini.xaml.cs">
       <DependentUpon>PaginaMagazzini.xaml</DependentUpon>
@@ -131,7 +133,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="ufficio_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -152,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Componenti\PaginaImpostazioni.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\PaginaInventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

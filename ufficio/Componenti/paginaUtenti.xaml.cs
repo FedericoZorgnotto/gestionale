@@ -82,28 +82,37 @@ namespace ufficio.Componenti
             if (e.Column.Header.ToString() == "Negozio")
             {
                 ComboBox cmb = e.EditingElement as ComboBox;
-                Negozio negozioSelezionato = cmb.SelectedItem as Negozio;
+                if (cmb != null)
+                {
+                    Negozio negozioSelezionato = cmb.SelectedItem as Negozio;
 
-                Utente utente = dgvUtenti.SelectedItem as Utente;
+                    Utente utente = dgvUtenti.SelectedItem as Utente;
 
-                utente.Negozio = negozioSelezionato;
+                    utente.Negozio = negozioSelezionato;
+                }
             }
             if (e.Column.Header.ToString() == "Magazzino")
             {
                 ComboBox cmb = e.EditingElement as ComboBox;
-                Magazzino magazzinoSelezionato = cmb.SelectedItem as Magazzino;
+                if (cmb != null)
+                {
+                    Magazzino magazzinoSelezionato = cmb.SelectedItem as Magazzino;
 
-                Utente utente = dgvUtenti.SelectedItem as Utente;
+                    Utente utente = dgvUtenti.SelectedItem as Utente;
 
-                utente.Magazzino = magazzinoSelezionato;
+                    utente.Magazzino = magazzinoSelezionato;
+                }
             }
             if (e.Column.Header.ToString() == "Nuova Password")
             {
                 TextBox txt = e.EditingElement as TextBox;
-                string nuovaPassword = txt.Text;
+                if (txt != null)
+                {
+                    string nuovaPassword = txt.Text;
 
-                Utente utente = dgvUtenti.SelectedItem as Utente;
-                utente.Password = Libreria.Utilities.HashUtility.CalcoloSHA1(nuovaPassword);
+                    Utente utente = dgvUtenti.SelectedItem as Utente;
+                    utente.Password = Libreria.Utilities.HashUtility.CalcoloSHA1(nuovaPassword); 
+                }
 
             }
         }
@@ -124,7 +133,7 @@ namespace ufficio.Componenti
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
 
         }
 
