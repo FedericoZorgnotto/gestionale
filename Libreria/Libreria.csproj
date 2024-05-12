@@ -96,15 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ImpostazioniController.cs" />
-    <Compile Include="Controller\MagazzinoController.cs" />
-    <Compile Include="Controller\NegozioController.cs" />
+    <Compile Include="Controller\PosizioneController.cs" />
     <Compile Include="Controller\UtenteController.cs" />
     <Compile Include="Converters\NegozioToIdConverter.cs" />
     <Compile Include="DatabaseLibrary.cs" />
     <Compile Include="Model\Impostazioni.cs" />
-    <Compile Include="Model\Magazzino.cs" />
-    <Compile Include="Model\Negozio.cs" />
-    <Compile Include="Model\Ruoli.cs" />
+    <Compile Include="Model\Posizione.cs" />
     <Compile Include="Model\Utente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\HashUtility.cs" />

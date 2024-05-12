@@ -26,10 +26,13 @@ namespace ufficio.Componenti
     {
         object dashboard;
         DatabaseLibrary db;
-        public PaginaInventario(DatabaseLibrary db, object dashboard, string posizione)
+        //Tipo Tipo;
+        public PaginaInventario(DatabaseLibrary db, object dashboard)  //, Tipo tipo
         {
-            InitializeComponent();
             this.dashboard = dashboard;
+            this.db = db;
+            //this.Tipo = tipo;
+            InitializeComponent();
 
         }
 
@@ -40,10 +43,10 @@ namespace ufficio.Componenti
 
         private void btnSalva_Click(object sender, RoutedEventArgs e)
         {
-            List<Negozio> negozi = dgvInventario.ItemsSource.Cast<Negozio>().ToList();
+            List<Posizione> negozi = dgvInventario.ItemsSource.Cast<Posizione>().ToList();
 
-            NegozioController negozioController = new NegozioController(db, "Negozi");
-            negozioController.SalvaNegozi(negozi);
+            PosizioneController posizioneController = new PosizioneController(db, "Negozi");
+            posizioneController.SalvaPosizioni(negozi);
             MessageBox.Show("Impostazioni salvate correttamente");
 
         }

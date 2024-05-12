@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace ufficio.Componenti
 {
@@ -12,6 +13,7 @@ namespace ufficio.Componenti
     public partial class PaginaMagazzini : UserControl
     {
         DatabaseLibrary db;
+        const string tabella = "Posizioni";
         object dashboard;
 
         public PaginaMagazzini(DatabaseLibrary db, object dashboard)
@@ -25,8 +27,8 @@ namespace ufficio.Componenti
         private void caricaDgvMagazzini()
         {
             dgvMagazini.Columns.Clear();
-            MagazzinoController magazzinoController = new MagazzinoController(db, "Magazzini");
-            dgvMagazini.ItemsSource = magazzinoController.GetMagazzini();
+            PosizioneController posizioneController = new PosizioneController(db, tabella);
+            dgvMagazini.ItemsSource = posizioneController.GetTipo(Tipo.Magazzino);
 
             DataGridTemplateColumn colonnaElimina = new DataGridTemplateColumn();
             colonnaElimina.Header = "Elimina";
@@ -47,21 +49,20 @@ namespace ufficio.Componenti
 
         private void btnSalva_Click(object sender, RoutedEventArgs e)
         {
-            List<Magazzino> magazzini = dgvMagazini.ItemsSource.Cast<Magazzino>().ToList();
-
-            MagazzinoController magazzinoController = new MagazzinoController(db, "Magazzini");
-            magazzinoController.SalvaMagazzini(magazzini);
+            List<Posizione> magazzini = dgvMagazini.ItemsSource.Cast<Posizione>().ToList();
+            PosizioneController posizioneController = new PosizioneController(db, tabella);
+            posizioneController.SalvaPosizioni(magazzini);
             MessageBox.Show("Impostazioni salvate correttamente");
 
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            Magazzino magazzino = (Magazzino)dgvMagazini.SelectedItem;
+            Posizione magazzino = (Posizione)dgvMagazini.SelectedItem;
             if (magazzino != null)
             {
-                MagazzinoController magazzinoController = new MagazzinoController(db, "Magazzini");
-                magazzinoController.EliminaMagazzino(magazzino);
+                PosizioneController posizioneController = new PosizioneController(db, tabella);
+                posizioneController.Elimina(magazzino);
                 caricaDgvMagazzini();
             }
         }

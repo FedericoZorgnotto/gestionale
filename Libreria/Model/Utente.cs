@@ -1,5 +1,10 @@
 ﻿namespace Libreria.Model
 {
+    public enum Ruoli
+    {
+        Amministratore,
+        Commesso
+    }
     public class Utente
     {
         public int id { get; set; }
@@ -12,8 +17,7 @@
         public string Indirizzo { get; set; }
         public string Citta { get; set; }
         public Ruoli Ruolo { get; set; }
-        public Negozio Negozio { get; set; }
-        public Magazzino Magazzino { get; set; }
+        public Posizione Posizione{ get; set; }
         public string Note { get; set; }
     }
 }

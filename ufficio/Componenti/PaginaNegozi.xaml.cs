@@ -11,7 +11,7 @@ namespace ufficio.Componenti
     {
         DatabaseLibrary db;
         object dashboard;
-
+        const string tabella = "Posizioni";
         public PaginaNegozi(DatabaseLibrary db, object dashboard)
         {
             InitializeComponent();
@@ -23,8 +23,8 @@ namespace ufficio.Componenti
         private void caricaDgvNegozi()
         {
             dgvNegozi.Columns.Clear();
-            NegozioController negozioController = new NegozioController(db, "Negozi");
-            dgvNegozi.ItemsSource = negozioController.GetNegozi();
+            PosizioneController posizioneController = new PosizioneController(db, tabella);
+            dgvNegozi.ItemsSource = posizioneController.GetTipo(Tipo.Negozio);
 
             DataGridTemplateColumn colonnaElimina = new DataGridTemplateColumn();
             colonnaElimina.Header = "Elimina";
@@ -45,20 +45,20 @@ namespace ufficio.Componenti
 
         private void btnSalva_Click(object sender, RoutedEventArgs e)
         {
-            List<Negozio> negozi = dgvNegozi.ItemsSource.Cast<Negozio>().ToList();
+            List<Posizione> negozi = dgvNegozi.ItemsSource.Cast<Posizione>().ToList();
 
-            NegozioController negozioController = new NegozioController(db, "Negozi");
-            negozioController.SalvaNegozi(negozi);
+            PosizioneController posizioneController = new PosizioneController(db, tabella);
+            posizioneController.SalvaPosizioni(negozi);
             MessageBox.Show("Impostazioni salvate correttamente");
 
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            Negozio negozio = (Negozio)dgvNegozi.SelectedItem;
+            Posizione negozio = (Posizione)dgvNegozi.SelectedItem;
             if (negozio != null)
             {
-                NegozioController negozioController = new NegozioController(db, "Negozi");
-                negozioController.EliminaNegozio(negozio);
+                PosizioneController posizioneController = new PosizioneController(db, tabella);
+                posizioneController.Elimina(negozio);
                 caricaDgvNegozi();
             }
         }
