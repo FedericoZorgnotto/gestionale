@@ -98,7 +98,7 @@
     <Compile Include="Controller\ImpostazioniController.cs" />
     <Compile Include="Controller\PosizioneController.cs" />
     <Compile Include="Controller\UtenteController.cs" />
-    <Compile Include="Converters\NegozioToIdConverter.cs" />
+    <Compile Include="Converters\PosizioneConverter.cs" />
     <Compile Include="DatabaseLibrary.cs" />
     <Compile Include="Model\Impostazioni.cs" />
     <Compile Include="Model\Posizione.cs" />

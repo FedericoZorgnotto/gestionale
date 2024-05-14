@@ -26,15 +26,19 @@ namespace ufficio.Componenti
     {
         object dashboard;
         DatabaseLibrary db;
+        private Posizione negozio;
+
         //Tipo Tipo;
-        public PaginaInventario(DatabaseLibrary db, object dashboard)  //, Tipo tipo
+        public PaginaInventario(DatabaseLibrary db, object dashboard, Posizione negozio)  //, Tipo tipo
         {
             this.dashboard = dashboard;
             this.db = db;
+            this.negozio = negozio;
             //this.Tipo = tipo;
             InitializeComponent();
-
+            MessageBox.Show(negozio.Nome);
         }
+
 
         private void btnEsci_Click(object sender, RoutedEventArgs e)
         {

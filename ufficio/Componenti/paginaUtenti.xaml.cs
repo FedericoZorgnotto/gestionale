@@ -1,10 +1,12 @@
 ﻿using Libreria.Controller;
+using Libreria.Converters;
 using Libreria.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 //TODO: comprendere perché non vengono visualizzati i negozi e i magazzini all'avvio nelle combobox
 namespace ufficio.Componenti
@@ -12,8 +14,7 @@ namespace ufficio.Componenti
     public partial class PaginaUtenti : UserControl
     {
         Libreria.DatabaseLibrary db;
-        NegozioController negozioController;
-        MagazzinoController magazzinoController;
+        const string tabellaPosizioni = "Posizioni";
         object dashboard;
 
         public PaginaUtenti(Libreria.DatabaseLibrary db, object dashboard)
@@ -21,86 +22,63 @@ namespace ufficio.Componenti
             InitializeComponent();
             this.db = db;
             this.dashboard = dashboard;
-            negozioController = new NegozioController(db, "Negozi");
-            magazzinoController = new MagazzinoController(db, "Magazzini");
             caricaDgvUtenti();
 
         }
 
         private void caricaDgvUtenti()
         {
-            dgvUtenti.Columns.Clear();
+            PosizioneController posizioneController = new PosizioneController(db, tabellaPosizioni);
             Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
+
             dgvUtenti.ItemsSource = utenteController.GetUtenti();
 
-            ObservableCollection<DataGridColumn> colonne = dgvUtenti.Columns;
-            int lunghezza = colonne.Count;
+            dgvUtenti.Columns.Clear();
+            //DataGridComboBoxColumn colonnaPosizione;
+            //int lunghezza = dgvUtenti.Columns.Count;
+            //for (int i = 0; i < lunghezza; i++)
+            //{
+            //    if (dgvUtenti.Columns[i].Header.ToString() == "Posizione")
+            //    {
+            //        colonnaPosizione = new DataGridComboBoxColumn();
+            //        colonnaPosizione.Header = "Posizione";
+            //        colonnaPosizione.ItemsSource = posizioneController.GetPosizioni();
+            //        colonnaPosizione.DisplayMemberPath = "Nome";
+            //        colonnaPosizione.SelectedValuePath = "Id";
+            //        colonnaPosizione.SelectedValueBinding = new Binding("Posizione.Id")
+            //        {
+            //            Converter = new IdToPosizioneConverter(posizioneController),
+            //        };
+            //        dgvUtenti.Columns[i] = colonnaPosizione;
+            //        break;
+            //    }
+            //}
 
-            DataGridTextColumn colonnaNuovaPassword = new DataGridTextColumn();
-            colonnaNuovaPassword.Header = "Nuova Password";
-            colonne.Add(colonnaNuovaPassword);
-
-            DataGridTemplateColumn colonnaElimina = new DataGridTemplateColumn();
-            colonnaElimina.Header = "Elimina";
-
-            FrameworkElementFactory buttonFactory = new FrameworkElementFactory(typeof(Button));
-            buttonFactory.SetValue(Button.ContentProperty, "Elimina");
-            buttonFactory.AddHandler(Button.ClickEvent, new RoutedEventHandler(DeleteButton_Click));
-            DataTemplate cellTemplate = new DataTemplate { VisualTree = buttonFactory };
-
-            colonnaElimina.CellTemplate = cellTemplate;
-            dgvUtenti.Columns.Add(colonnaElimina);
-
-            for (int i = 0; i < lunghezza; i++)
-            {
-                if (colonne[i].Header.ToString() == "Password" || colonne[i].Header.ToString() == "id")
-                    colonne[i].Visibility = Visibility.Hidden;
-
-                if (colonne[i].Header.ToString() == "Negozio")
-                {
-                    DataGridComboBoxColumn colonnaNegozio = new DataGridComboBoxColumn();
-                    colonnaNegozio.Header = "Negozio";
-                    colonnaNegozio.DisplayMemberPath = "nome";
-                    colonnaNegozio.SelectedValuePath = "Id";
-                    colonnaNegozio.ItemsSource = negozioController.GetNegozi();
-                    colonne[i] = colonnaNegozio;
-                }
-                if (colonne[i].Header.ToString() == "Magazzino")
-                {
-                    DataGridComboBoxColumn colonnaMagazzino = new DataGridComboBoxColumn();
-                    colonnaMagazzino.Header = "Magazzino";
-                    colonnaMagazzino.DisplayMemberPath = "Nome";
-                    colonnaMagazzino.SelectedValuePath = "Id";
-                    colonnaMagazzino.ItemsSource = magazzinoController.GetMagazzini();
-                    colonne[i] = colonnaMagazzino;
-                }
-            }
+            DataGridTemplateColumn colonnaPosizione = new DataGridTemplateColumn();
+            colonnaPosizione.Header = "Posizione";
+            FrameworkElementFactory factory = new FrameworkElementFactory(typeof(ComboBox));
+            factory.SetValue(ComboBox.ItemsSourceProperty, posizioneController.GetPosizioni());
+            factory.SetValue(ComboBox.DisplayMemberPathProperty, "Nome");
+            factory.SetValue(ComboBox.SelectedValuePathProperty, "Id");
+            factory.SetBinding(ComboBox.SelectedValueProperty, new Binding("Posizione.Id"));
+            DataTemplate cellTemplate = new DataTemplate { VisualTree = factory };
+            colonnaPosizione.CellTemplate = cellTemplate;
+            dgvUtenti.Columns.Add(colonnaPosizione);
         }
+
 
         private void dgvUtenti_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (e.Column.Header.ToString() == "Negozio")
+            if (e.Column.Header.ToString() == "Posizione")
             {
                 ComboBox cmb = e.EditingElement as ComboBox;
                 if (cmb != null)
                 {
-                    Negozio negozioSelezionato = cmb.SelectedItem as Negozio;
+                    Posizione posizioneSelezionata = cmb.SelectedItem as Posizione;
 
                     Utente utente = dgvUtenti.SelectedItem as Utente;
 
-                    utente.Negozio = negozioSelezionato;
-                }
-            }
-            if (e.Column.Header.ToString() == "Magazzino")
-            {
-                ComboBox cmb = e.EditingElement as ComboBox;
-                if (cmb != null)
-                {
-                    Magazzino magazzinoSelezionato = cmb.SelectedItem as Magazzino;
-
-                    Utente utente = dgvUtenti.SelectedItem as Utente;
-
-                    utente.Magazzino = magazzinoSelezionato;
+                    utente.Posizione = posizioneSelezionata;
                 }
             }
             if (e.Column.Header.ToString() == "Nuova Password")
@@ -111,7 +89,7 @@ namespace ufficio.Componenti
                     string nuovaPassword = txt.Text;
 
                     Utente utente = dgvUtenti.SelectedItem as Utente;
-                    utente.Password = Libreria.Utilities.HashUtility.CalcoloSHA1(nuovaPassword); 
+                    utente.Password = Libreria.Utilities.HashUtility.CalcoloSHA1(nuovaPassword);
                 }
 
             }

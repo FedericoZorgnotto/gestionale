@@ -59,7 +59,7 @@ namespace Libreria.Controller
                         Indirizzo = item["indirizzo"].ToString(),
                         Citta = item["citta"].ToString(),
                         Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), item["ruolo"].ToString()),
-                        Posizione = posizioneController.GetPosizione(int.TryParse(dt.Rows[0]["magazzino"].ToString(), out int valoreMagazzino) ? Convert.ToInt32(dt.Rows[0]["magazzino"]) : -1),
+                        Posizione = posizioneController.GetPosizione(int.TryParse(dt.Rows[0]["posizione"].ToString(), out int valoreMagazzino) ? Convert.ToInt32(dt.Rows[0]["posizione"]) : -1),
                         Note = item["note"].ToString()
                     });
                 }
@@ -133,7 +133,7 @@ namespace Libreria.Controller
                     sqlParameters[7] = new SqlParameter("@indirizzo", item.Indirizzo);
                     sqlParameters[8] = new SqlParameter("@citta", item.Citta);
                     sqlParameters[9] = new SqlParameter("@ruolo", item.Ruolo);
-                    sqlParameters[10] = new SqlParameter("@posizione", item.Posizione.Id);
+                    sqlParameters[10] = new SqlParameter("@posizione", item.Posizione == null ? (object)DBNull.Value : item.Posizione.Id);
                     sqlParameters[11] = new SqlParameter("@note", item.Note);
                     db.EseguiQuery(query, sqlParameters);
 

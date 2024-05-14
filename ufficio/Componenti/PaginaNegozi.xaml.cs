@@ -2,6 +2,7 @@
 using Libreria.Controller;
 using Libreria.Model;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,6 +37,35 @@ namespace ufficio.Componenti
 
             colonnaElimina.CellTemplate = cellTemplate;
             dgvNegozi.Columns.Add(colonnaElimina);
+
+
+            DataGridTemplateColumn colonnaInventario = new DataGridTemplateColumn();
+            colonnaInventario.Header = "Inventario";
+
+            buttonFactory = new FrameworkElementFactory(typeof(Button));
+            buttonFactory.SetValue(Button.ContentProperty, "Inventario");
+            buttonFactory.AddHandler(Button.ClickEvent, new RoutedEventHandler(InventarioButton_Click));
+            cellTemplate = new DataTemplate { VisualTree = buttonFactory };
+
+            colonnaInventario.CellTemplate = cellTemplate;
+            dgvNegozi.Columns.Add(colonnaInventario);
+        }
+
+        private void InventarioButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (dgvNegozi.SelectedIndex == dgvNegozi.Items.Count - 1 || dgvNegozi.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selezionare un negozio");
+                return;
+            }
+            Posizione negozio = (Posizione)dgvNegozi.SelectedItem;
+            if (negozio != null)
+            {
+                PaginaInventario paginaInventario = new PaginaInventario(db, this.Content, negozio);
+                this.Content = paginaInventario;
+                return;
+            }
         }
 
         private void btnEsci_Click(object sender, RoutedEventArgs e)
@@ -54,6 +84,12 @@ namespace ufficio.Componenti
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+
+            if (dgvNegozi.SelectedIndex == dgvNegozi.Items.Count - 1 || dgvNegozi.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selezionare un negozio");
+                return;
+            }
             Posizione negozio = (Posizione)dgvNegozi.SelectedItem;
             if (negozio != null)
             {
