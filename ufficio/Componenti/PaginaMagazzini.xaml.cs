@@ -40,6 +40,34 @@ namespace ufficio.Componenti
 
             colonnaElimina.CellTemplate = cellTemplate;
             dgvMagazini.Columns.Add(colonnaElimina);
+
+            DataGridTemplateColumn colonnaInventario = new DataGridTemplateColumn();
+            colonnaInventario.Header = "Inventario";
+
+            buttonFactory = new FrameworkElementFactory(typeof(Button));
+            buttonFactory.SetValue(Button.ContentProperty, "Inventario");
+            buttonFactory.AddHandler(Button.ClickEvent, new RoutedEventHandler(InventarioButton_Click));
+            cellTemplate = new DataTemplate { VisualTree = buttonFactory };
+
+            colonnaInventario.CellTemplate = cellTemplate;
+            dgvMagazini.Columns.Add(colonnaInventario);
+        }
+
+        private void InventarioButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (dgvMagazini.SelectedIndex == dgvMagazini.Items.Count - 1 || dgvMagazini.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selezionare un negozio");
+                return;
+            }
+            Posizione magazzino = (Posizione)dgvMagazini.SelectedItem;
+            if (magazzino != null)
+            {
+                PaginaInventario paginaInventario = new PaginaInventario(db, this.Content, magazzino);
+                this.Content = paginaInventario;
+                return;
+            }
         }
 
         private void btnEsci_Click(object sender, RoutedEventArgs e)
@@ -58,12 +86,18 @@ namespace ufficio.Componenti
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            if (dgvMagazini.SelectedIndex == dgvMagazini.Items.Count - 1 || dgvMagazini.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selezionare un negozio");
+                return;
+            }
             Posizione magazzino = (Posizione)dgvMagazini.SelectedItem;
             if (magazzino != null)
             {
                 PosizioneController posizioneController = new PosizioneController(db, tabella);
                 posizioneController.Elimina(magazzino);
                 caricaDgvMagazzini();
+                return;
             }
         }
     }
