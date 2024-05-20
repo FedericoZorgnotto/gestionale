@@ -86,17 +86,20 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componenti\posizioni\PaginaAggiungiPosizione.xaml.cs">
+      <DependentUpon>PaginaAggiungiPosizione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\posizioni\PaginaModificaPosizione.xaml.cs">
+      <DependentUpon>PaginaModificaPosizione.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Componenti\PaginaImpostazioni.xaml.cs">
       <DependentUpon>PaginaImpostazioni.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Componenti\PaginaInventario.xaml.cs">
+    <Compile Include="Componenti\inventario\PaginaInventario.xaml.cs">
       <DependentUpon>PaginaInventario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Componenti\PaginaMagazzini.xaml.cs">
-      <DependentUpon>PaginaMagazzini.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Componenti\PaginaNegozi.xaml.cs">
-      <DependentUpon>PaginaNegozi.xaml</DependentUpon>
+    <Compile Include="Componenti\posizioni\PaginaPosizioni.xaml.cs">
+      <DependentUpon>PaginaPosizioni.xaml</DependentUpon>
     </Compile>
     <Compile Include="Componenti\utenti\PaginaAggiungiUtente.xaml.cs">
       <DependentUpon>PaginaAggiungiUtente.xaml</DependentUpon>
@@ -158,19 +161,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Componenti\posizioni\PaginaAggiungiPosizione.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\posizioni\PaginaModificaPosizione.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Componenti\PaginaImpostazioni.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Componenti\PaginaInventario.xaml">
+    <Page Include="Componenti\inventario\PaginaInventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Componenti\PaginaMagazzini.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Componenti\PaginaNegozi.xaml">
+    <Page Include="Componenti\posizioni\PaginaPosizioni.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

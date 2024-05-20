@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-//TODO: comprendere perché non vengono visualizzati i negozi e i magazzini all'avvio nelle combobox
+//TODO: sistemare colonna posizione
 namespace ufficio.Componenti.utenti
 {
     public partial class PaginaUtenti : UserControl

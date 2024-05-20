@@ -45,17 +45,12 @@ namespace ufficio.Componenti
             this.Content = new utenti.PaginaUtenti(db, dashboard);
         }
 
-        private void btnMagazini_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnPosizioni_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var dashboard = this.Content;
-            this.Content = new PaginaMagazzini(db, dashboard);
+            this.Content = new posizioni.PaginaPosizioni(db, dashboard);
         }
 
-        private void btnNegozi_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var dashboard = this.Content;
-            this.Content = new PaginaNegozi(db, dashboard);
-        }
 
         private void btnImpostazioni_Click(object sender, System.Windows.RoutedEventArgs e)
         {

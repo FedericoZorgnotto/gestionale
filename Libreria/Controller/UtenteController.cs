@@ -72,6 +72,8 @@ namespace Libreria.Controller
                 ArrayList utenti = new ArrayList();
                 foreach (DataRow item in dt.Rows)
                 {
+                    int idPos;
+                    int.TryParse(item["posizione"].ToString(), out idPos);
                     utenti.Add(new Utente()
                     {
                         Id = (int)item["id"],
@@ -84,7 +86,7 @@ namespace Libreria.Controller
                         Indirizzo = item["indirizzo"].ToString(),
                         Citta = item["citta"].ToString(),
                         Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), item["ruolo"].ToString()),
-                        Posizione = posizioneController.GetPosizione(int.TryParse(dt.Rows[0]["posizione"].ToString(), out int valoreMagazzino) ? Convert.ToInt32(dt.Rows[0]["posizione"]) : -1),
+                        Posizione = posizioneController.GetPosizione(idPos),
                         Note = item["note"].ToString()
                     });
                 }

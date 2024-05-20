@@ -132,7 +132,7 @@ namespace Libreria.Controller
                 throw new Exception(ex.Message);
             }
         }
-        public IEnumerable GetTipo(Tipo tipo)
+        public IEnumerable GetByTipo(Tipo tipo)
         {
             try
             {
@@ -161,6 +161,48 @@ namespace Libreria.Controller
                 throw new Exception(ex.Message);
             }
 
+        }
+
+        public void Modifica(Posizione posizione)
+        {
+            try
+            {
+                string query = $"UPDATE {nomeTabella} SET nome = @nome, indirizzo = @indirizzo, citta = @citta, telefono = @telefono, tipo = @tipo, note = @note WHERE id = @id";
+                SqlParameter[] sqlParameters = new SqlParameter[7];
+                sqlParameters[0] = new SqlParameter("@id", posizione.Id);
+                sqlParameters[1] = new SqlParameter("@nome", posizione.Nome);
+                sqlParameters[2] = new SqlParameter("@indirizzo", posizione.Indirizzo);
+                sqlParameters[3] = new SqlParameter("@citta", posizione.Citta);
+                sqlParameters[4] = new SqlParameter("@telefono", posizione.Telefono);
+                sqlParameters[5] = new SqlParameter("@tipo", (int)posizione.Tipo);
+                sqlParameters[6] = new SqlParameter("@note", posizione.Note);
+                db.EseguiQuery(query, sqlParameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void Aggiungi(Posizione posizione)
+        {
+            try
+            {
+                string query = $"INSERT INTO {nomeTabella} VALUES (@id, @nome, @indirizzo, @citta, @telefono, @tipo, @note)";
+                SqlParameter[] sqlParameters = new SqlParameter[7];
+                sqlParameters[0] = new SqlParameter("@id", posizione.Id);
+                sqlParameters[1] = new SqlParameter("@nome", posizione.Nome);
+                sqlParameters[2] = new SqlParameter("@indirizzo", posizione.Indirizzo);
+                sqlParameters[3] = new SqlParameter("@citta", posizione.Citta);
+                sqlParameters[4] = new SqlParameter("@telefono", posizione.Telefono);
+                sqlParameters[5] = new SqlParameter("@tipo", (int)posizione.Tipo);
+                sqlParameters[6] = new SqlParameter("@note", posizione.Note);
+                db.EseguiQuery(query, sqlParameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

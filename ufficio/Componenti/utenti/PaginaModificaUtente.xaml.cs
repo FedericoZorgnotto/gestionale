@@ -39,6 +39,7 @@ namespace ufficio.Componenti.utenti
             IEnumerable posizioni = posizioneController.GetAll();
             cmbPosizione.ItemsSource = posizioni;
             cmbPosizione.DisplayMemberPath = "Nome";    
+            cmbPosizione.SelectedValuePath = "Id";
 
             txtUsername.Text = utente.Username;
             txtNome.Text = utente.Nome;
@@ -47,8 +48,9 @@ namespace ufficio.Componenti.utenti
             txtTelefono.Text = utente.Telefono;
             txtIndirizzo.Text = utente.Indirizzo;
             txtCitta.Text = utente.Citta;
-            cmbRuolo.Text = utente.Ruolo.ToString();
-            cmbPosizione.Text = utente.Posizione != null ? utente.Posizione.ToString() : "";
+            cmbRuolo.SelectedItem = utente.Ruolo;
+            cmbPosizione.SelectedValue = utente.Posizione != null ? utente.Posizione.Id : -1;
+            //cmbPosizione.SelectedItem = utente.Posizione;
             txtNote.Text = utente.Note;
 
         }
@@ -65,7 +67,8 @@ namespace ufficio.Componenti.utenti
             utente.Ruolo = (Libreria.Model.Ruoli)Enum.Parse(typeof(Libreria.Model.Ruoli), cmbRuolo.Text);
             utente.Posizione = cmbPosizione.SelectedItem as Libreria.Model.Posizione;
             utente.Note = txtNote.Text;
-            utente.Password = Libreria.Utilities.HashUtility.CalcoloSHA1(txtPassword.Text);
+            if(txtPassword.Text != "")
+                utente.Password = Libreria.Utilities.HashUtility.CalcoloSHA1(txtPassword.Text);
 
 
             Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
