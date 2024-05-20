@@ -40,7 +40,7 @@ namespace Libreria.Controller
             }
         }
 
-        public IEnumerable GetPosizioni()
+        public IEnumerable GetAll()
         {
             try
             {

@@ -2,6 +2,7 @@
 using Libreria.Controller;
 using Libreria.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,17 +27,37 @@ namespace ufficio.Componenti
     {
         object dashboard;
         DatabaseLibrary db;
-        private Posizione negozio;
+        private Posizione negozio = null;
+        private ProdottiController ProdottiController;
+        public PaginaInventario(DatabaseLibrary db, object dashboard)  //, Tipo tipo
+        {
+            this.dashboard = dashboard;
+            this.db = db;
+            ProdottiController = new ProdottiController(db, "Prodotti");
+            InitializeComponent();
+            caricaDgvInventario();
+        }
 
-        //Tipo Tipo;
-        public PaginaInventario(DatabaseLibrary db, object dashboard, Posizione negozio)  //, Tipo tipo
+        public PaginaInventario(DatabaseLibrary db, object dashboard, Posizione negozio) : this(db, dashboard)
         {
             this.dashboard = dashboard;
             this.db = db;
             this.negozio = negozio;
-            //this.Tipo = tipo;
+            ProdottiController = new ProdottiController(db, "Prodotti");
             InitializeComponent();
-            MessageBox.Show(negozio.Nome);
+            caricaDgvInventario();
+        }
+
+        private void caricaDgvInventario()
+        {
+            if (negozio != null)
+            {
+                dgvInventario.ItemsSource = ProdottiController.getProdotti(negozio);
+            }
+            else
+            {
+                dgvInventario.ItemsSource = ProdottiController.getProdotti();
+            }
         }
 
 

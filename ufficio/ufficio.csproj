@@ -98,7 +98,13 @@
     <Compile Include="Componenti\PaginaNegozi.xaml.cs">
       <DependentUpon>PaginaNegozi.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Componenti\PaginaUtenti.xaml.cs">
+    <Compile Include="Componenti\utenti\PaginaAggiungiUtente.xaml.cs">
+      <DependentUpon>PaginaAggiungiUtente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\utenti\PaginaModificaUtente.xaml.cs">
+      <DependentUpon>PaginaModificaUtente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\utenti\PaginaUtenti.xaml.cs">
       <DependentUpon>PaginaUtenti.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
@@ -168,7 +174,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Componenti\PaginaUtenti.xaml">
+    <Page Include="Componenti\utenti\PaginaAggiungiUtente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\utenti\PaginaModificaUtente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\utenti\PaginaUtenti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -42,7 +42,7 @@ namespace ufficio.Componenti
         private void btnUtenti_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var dashboard = this.Content;
-            this.Content = new PaginaUtenti(db, dashboard);
+            this.Content = new utenti.PaginaUtenti(db, dashboard);
         }
 
         private void btnMagazini_Click(object sender, System.Windows.RoutedEventArgs e)

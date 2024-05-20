@@ -5,9 +5,8 @@
         Amministratore,
         Commesso
     }
-    public class Utente
+    public class Utente:Elemento
     {
-        public int id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Nome { get; set; }
@@ -19,5 +18,23 @@
         public Ruoli Ruolo { get; set; }
         public Posizione Posizione{ get; set; }
         public string Note { get; set; }
+        
+        public Utente():base() { }
+
+        public Utente(int id, string username, string password, string nome, string cognome, string email, string telefono, string indirizzo, string citta, Ruoli ruolo, Posizione posizione, string note):base(id)
+        {
+            Username = username;
+            Password = password;
+            Nome = nome;
+            Cognome = cognome;
+            Email = email;
+            Telefono = telefono;
+            Indirizzo = indirizzo;
+            Citta = citta;
+            Ruolo = ruolo;
+            Posizione = posizione;
+            Note = note;
+        }
     }
+
 }

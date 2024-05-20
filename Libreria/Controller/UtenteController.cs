@@ -20,7 +20,33 @@ namespace Libreria.Controller
             posizioneController = new PosizioneController(db, tabellaPosizioni);
         }
 
-        public void EliminaUtente(Utente utente)
+        public void Aggiungi(Utente utente)
+        {
+            try
+            {
+                string query = $"INSERT INTO {tabellaUtenti} VALUES (@id, @username, @password, @nome, @cognome, @email, @telefono, @indirizzo, @citta, @ruolo, @posizione, @note)";
+                SqlParameter[] sqlParameters = new SqlParameter[12];
+                sqlParameters[0] = new SqlParameter("@id", utente.Id);
+                sqlParameters[1] = new SqlParameter("@username", utente.Username);
+                sqlParameters[2] = new SqlParameter("@password", utente.Password);
+                sqlParameters[3] = new SqlParameter("@nome", utente.Nome);
+                sqlParameters[4] = new SqlParameter("@cognome", utente.Cognome);
+                sqlParameters[5] = new SqlParameter("@email", utente.Email);
+                sqlParameters[6] = new SqlParameter("@telefono", utente.Telefono);
+                sqlParameters[7] = new SqlParameter("@indirizzo", utente.Indirizzo);
+                sqlParameters[8] = new SqlParameter("@citta", utente.Citta);
+                sqlParameters[9] = new SqlParameter("@ruolo", utente.Ruolo);
+                sqlParameters[10] = new SqlParameter("@posizione", utente.Posizione == null ? (object)DBNull.Value : utente.Posizione.Id);
+                sqlParameters[11] = new SqlParameter("@note", utente.Note);
+                db.EseguiQuery(query, sqlParameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void Elimina(Utente utente)
         {
             if (utente != null)
             {
@@ -28,7 +54,7 @@ namespace Libreria.Controller
                 {
                     string query = $"DELETE FROM {tabellaUtenti} WHERE id = @id";
                     SqlParameter[] sqlParameters = new SqlParameter[1];
-                    sqlParameters[0] = new SqlParameter("@id", utente.id);
+                    sqlParameters[0] = new SqlParameter("@id", utente.Id);
                     db.EseguiQuery(query, sqlParameters);
                 }
                 catch (Exception ex)
@@ -37,7 +63,6 @@ namespace Libreria.Controller
                 }
             }
         }
-
         public IEnumerable GetUtenti()
         {
             try
@@ -49,7 +74,7 @@ namespace Libreria.Controller
                 {
                     utenti.Add(new Utente()
                     {
-                        id = (int)item["id"],
+                        Id = (int)item["id"],
                         Username = item["username"].ToString(),
                         Password = item["password"].ToString(),
                         Nome = item["nome"].ToString(),
@@ -88,7 +113,7 @@ namespace Libreria.Controller
                 //errore qui
                 return new Utente()
                 {
-                    id = (int)dt.Rows[0]["id"],
+                    Id = (int)dt.Rows[0]["id"],
                     Username = dt.Rows[0]["username"].ToString(),
                     Password = dt.Rows[0]["password"].ToString(),
                     Nome = dt.Rows[0]["nome"].ToString(),
@@ -108,6 +133,32 @@ namespace Libreria.Controller
             }
         }
 
+        public void Modifica(Utente utente)
+        {
+            try
+            {
+                string query = $"UPDATE {tabellaUtenti} SET username = @username, password = @password, nome = @nome, cognome = @cognome, email = @email, telefono = @telefono, indirizzo = @indirizzo, citta = @citta, ruolo = @ruolo, posizione = @posizione, note = @note WHERE id = @id";
+                SqlParameter[] sqlParameters = new SqlParameter[12];
+                sqlParameters[0] = new SqlParameter("@id", utente.Id);
+                sqlParameters[1] = new SqlParameter("@username", utente.Username);
+                sqlParameters[2] = new SqlParameter("@password", utente.Password);
+                sqlParameters[3] = new SqlParameter("@nome", utente.Nome);
+                sqlParameters[4] = new SqlParameter("@cognome", utente.Cognome);
+                sqlParameters[5] = new SqlParameter("@email", utente.Email);
+                sqlParameters[6] = new SqlParameter("@telefono", utente.Telefono);
+                sqlParameters[7] = new SqlParameter("@indirizzo", utente.Indirizzo);
+                sqlParameters[8] = new SqlParameter("@citta", utente.Citta);
+                sqlParameters[9] = new SqlParameter("@ruolo", utente.Ruolo);
+                sqlParameters[10] = new SqlParameter("@posizione", utente.Posizione == null ? (object)DBNull.Value : utente.Posizione.Id);
+                sqlParameters[11] = new SqlParameter("@note", utente.Note);
+                db.EseguiQuery(query, sqlParameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public void SalvaUtenti(System.Collections.Generic.List<Utente> utenti)
         {
             try
@@ -116,14 +167,14 @@ namespace Libreria.Controller
                 {
                     string query = $"SELECT * FROM {tabellaUtenti} WHERE id = @id";
                     SqlParameter[] sqlParameters = new SqlParameter[1];
-                    sqlParameters[0] = new SqlParameter("@id", item.id);
+                    sqlParameters[0] = new SqlParameter("@id", item.Id);
                     DataTable dt = db.EseguiQuery(query, sqlParameters);
                     if (dt.Rows.Count == 0)
                         query = $"INSERT INTO {tabellaUtenti} VALUES (@id, @username, @password, @nome, @cognome, @email, @telefono, @indirizzo, @citta, @ruolo, @posizione, @note)";
                     else
                         query = $"UPDATE {tabellaUtenti} SET username = @username, password = @password, nome = @nome, cognome = @cognome, email = @email, telefono = @telefono, indirizzo = @indirizzo, citta = @citta, ruolo = @ruolo, posizione = @posizione, note = @note WHERE id = @id";
                     sqlParameters = new SqlParameter[12];
-                    sqlParameters[0] = new SqlParameter("@id", item.id);
+                    sqlParameters[0] = new SqlParameter("@id", item.Id);
                     sqlParameters[1] = new SqlParameter("@username", item.Username);
                     sqlParameters[2] = new SqlParameter("@password", item.Password);
                     sqlParameters[3] = new SqlParameter("@nome", item.Nome);

@@ -11,9 +11,8 @@ namespace Libreria.Model
         Magazzino,
         Negozio
     }
-    public class Posizione
+    public class Posizione: Elemento
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
         public string Indirizzo { get; set; }
         public string Citta { get; set; }
@@ -21,11 +20,10 @@ namespace Libreria.Model
         public Tipo Tipo { get; set; }
         public string Note { get; set; }
 
-        public Posizione() { }
+        public Posizione():base() { }
 
-        public Posizione(int id, string nome, string indirizzo, string citta, string telefono,Tipo tipo, string note)
+        public Posizione(int id, string nome, string indirizzo, string citta, string telefono,Tipo tipo, string note):base(id)
         {
-            Id = id;
             Nome = nome;
             Indirizzo = indirizzo;
             Citta = citta;
