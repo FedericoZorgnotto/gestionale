@@ -8,7 +8,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-//TODO: sistemare colonna posizione
 namespace ufficio.Componenti.utenti
 {
     public partial class PaginaUtenti : UserControl
@@ -59,6 +58,10 @@ namespace ufficio.Componenti.utenti
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            //imposto la visualizzazione per la colonna posizione
+            DataGridTextColumn colPosizione = (DataGridTextColumn)dgvUtenti.Columns[9];
+            colPosizione.Binding = new Binding("Posizione.Nome");
+            
             //remove password column
             dgvUtenti.Columns.RemoveAt(1);
             //add edit button column

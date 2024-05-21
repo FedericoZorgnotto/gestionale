@@ -8,10 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
-        <Button x:Name="btnUtenti" Content="UTENTI" HorizontalAlignment="Left" Margin="10,10,0,0" Width="100" Click="btnUtenti_Click" Height="97" VerticalAlignment="Top"/>
-        <Button x:Name="btnPosizioni" Content="POSIZIONI" HorizontalAlignment="Left" Margin="128,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnPosizioni_Click"/>
-        <Button x:Name="btnImpostazioni" Content="IMPOSTAZIONI" HorizontalAlignment="Left" Margin="250,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnImpostazioni_Click"/>
-        <Button x:Name="btnLogout" Content="logout" Margin="0,10,11,0" Click="btnLogout_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="39"/>
+        <Button x:Name="btnUtenti" TabIndex="1" Content="UTENTI" HorizontalAlignment="Left" Margin="10,10,0,0" Width="100" Click="btnUtenti_Click" Height="97" VerticalAlignment="Top"/>
+        <Button x:Name="btnPosizioni" TabIndex="2" Content="POSIZIONI" HorizontalAlignment="Left" Margin="128,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnPosizioni_Click"/>
+        <Button x:Name="btnProdotti" TabIndex="3" Content="PRODOTTI" HorizontalAlignment="Left" Margin="250,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnProdotti_Click"/>
+        <Button x:Name="btnImpostazioni" TabIndex="4" Content="IMPOSTAZIONI" HorizontalAlignment="Left" Margin="370,10,0,0" Width="100" Height="97" VerticalAlignment="Top" Click="btnImpostazioni_Click"/>
+        <Button x:Name="btnLogout" TabIndex="5" Content="logout" Margin="0,10,11,0" Click="btnLogout_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="39"/>
 
     </Grid>
 </UserControl>

@@ -100,7 +100,7 @@ namespace Libreria.Controller
             }
         }
 
-        public Posizione GetPosizione(int id)
+        public Posizione GetById(int id)
         {
             if (id == -1)
             {

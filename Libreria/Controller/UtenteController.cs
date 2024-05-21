@@ -86,7 +86,7 @@ namespace Libreria.Controller
                         Indirizzo = item["indirizzo"].ToString(),
                         Citta = item["citta"].ToString(),
                         Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), item["ruolo"].ToString()),
-                        Posizione = posizioneController.GetPosizione(idPos),
+                        Posizione = posizioneController.GetById(idPos),
                         Note = item["note"].ToString()
                     });
                 }
@@ -125,7 +125,7 @@ namespace Libreria.Controller
                     Indirizzo = dt.Rows[0]["indirizzo"].ToString(),
                     Citta = dt.Rows[0]["citta"].ToString(),
                     Ruolo = (Ruoli)Enum.Parse(typeof(Ruoli), dt.Rows[0]["ruolo"].ToString()),
-                    Posizione = posizioneController.GetPosizione(int.TryParse(dt.Rows[0]["posizione"].ToString(), out int valoreNegozio) ? Convert.ToInt32(dt.Rows[0]["posizione"]) : -1),
+                    Posizione = posizioneController.GetById(int.TryParse(dt.Rows[0]["posizione"].ToString(), out int valoreNegozio) ? Convert.ToInt32(dt.Rows[0]["posizione"]) : -1),
                     Note = dt.Rows[0]["note"].ToString()
                 };
             }

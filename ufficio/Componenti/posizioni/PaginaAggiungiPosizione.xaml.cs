@@ -41,6 +41,31 @@ namespace ufficio.Componenti.posizioni
         {
             try
             {
+                if (txtNome.Text == "")
+                {
+                    MessageBox.Show("Inserire il nome");
+                    return;
+                }
+                if (txtIndirizzo.Text == "")
+                {
+                    MessageBox.Show("Inserire l'indirizzo");
+                    return;
+                }
+                if (txtCitta.Text == "")
+                {
+                    MessageBox.Show("Inserire la città");
+                    return;
+                }
+                if (txtTelefono.Text == "")
+                {
+                    MessageBox.Show("Inserire il telefono");
+                    return;
+                }
+                if (cmbTipo.SelectedItem == null)
+                {
+                    MessageBox.Show("Selezionare il tipo");
+                    return;
+                }
                 PosizioneController.Aggiungi(new Posizione()
                 {
                     Nome = txtNome.Text,

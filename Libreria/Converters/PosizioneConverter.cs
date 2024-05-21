@@ -19,7 +19,7 @@ namespace Libreria.Converters
         {
             if (value is int id)
             {
-                return posizioneController.GetPosizione(id);
+                return posizioneController.GetById(id);
             }
             return null;
         }

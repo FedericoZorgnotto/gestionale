@@ -3,19 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34818.151
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "magazzino", "magazzino\magazzino.csproj", "{A97E0E82-0F09-4192-9EFA-FAB70ECB2C7D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74} = {25EE7AA3-BE4D-4984-A630-9F320BB2EB74}
-		{EFDACA09-AC84-4379-9336-05D88B7E1242} = {EFDACA09-AC84-4379-9336-05D88B7E1242}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ufficio", "ufficio\ufficio.csproj", "{981046F9-867D-4DFD-8E1F-DA697C39C745}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negozio", "negozio\negozio.csproj", "{65223979-10EE-4378-8002-452C2B5462FA}"
-	ProjectSection(ProjectDependencies) = postProject
-		{25EE7AA3-BE4D-4984-A630-9F320BB2EB74} = {25EE7AA3-BE4D-4984-A630-9F320BB2EB74}
-		{EFDACA09-AC84-4379-9336-05D88B7E1242} = {EFDACA09-AC84-4379-9336-05D88B7E1242}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cassa", "cassa\cassa.csproj", "{929CD8A7-E6B9-4755-80FE-3246E5BCED97}"
 EndProject
@@ -29,18 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A97E0E82-0F09-4192-9EFA-FAB70ECB2C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A97E0E82-0F09-4192-9EFA-FAB70ECB2C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A97E0E82-0F09-4192-9EFA-FAB70ECB2C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A97E0E82-0F09-4192-9EFA-FAB70ECB2C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{981046F9-867D-4DFD-8E1F-DA697C39C745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{981046F9-867D-4DFD-8E1F-DA697C39C745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{981046F9-867D-4DFD-8E1F-DA697C39C745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{981046F9-867D-4DFD-8E1F-DA697C39C745}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65223979-10EE-4378-8002-452C2B5462FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65223979-10EE-4378-8002-452C2B5462FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65223979-10EE-4378-8002-452C2B5462FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65223979-10EE-4378-8002-452C2B5462FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{929CD8A7-E6B9-4755-80FE-3246E5BCED97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{929CD8A7-E6B9-4755-80FE-3246E5BCED97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{929CD8A7-E6B9-4755-80FE-3246E5BCED97}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,8 +1,9 @@
 ﻿using Libreria.Model;
 using System;
 using System.Windows.Forms;
-using ufficio.Componenti;
-namespace ufficio
+using cassa.Componenti;
+
+namespace cassa
 {
     public partial class LoginForm : Form
     {
@@ -13,7 +14,6 @@ namespace ufficio
 
         private ComponentiGrafiche.Login login;
         private Dashboard dashboard;
-
         public LoginForm()
         {
             InitializeComponent();
@@ -62,5 +62,6 @@ namespace ufficio
             this.Controls.Clear();
             this.Controls.Add(dashboardHost);
         }
+
     }
 }

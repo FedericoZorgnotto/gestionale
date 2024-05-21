@@ -93,7 +93,7 @@ namespace ufficio.Componenti.posizioni
             Posizione posizione = (Posizione)dgvPosizioni.SelectedItem;
             if (posizione != null)
             {
-                PaginaInventario paginaInventario = new PaginaInventario(db, this.Content, posizione);
+                inventario.PaginaInventario paginaInventario = new inventario.PaginaInventario(db, this.Content, posizione);
                 this.Content = paginaInventario;
                 return;
             }

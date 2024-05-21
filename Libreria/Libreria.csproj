@@ -96,13 +96,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ImpostazioniController.cs" />
+    <Compile Include="Controller\MagazzinoController.cs" />
     <Compile Include="Controller\PosizioneController.cs" />
     <Compile Include="Controller\ProdottiController.cs" />
     <Compile Include="Controller\UtenteController.cs" />
     <Compile Include="Converters\PosizioneConverter.cs" />
     <Compile Include="DatabaseLibrary.cs" />
+    <Compile Include="Model\Acquisto.cs" />
+    <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Elemento.cs" />
     <Compile Include="Model\Impostazioni.cs" />
+    <Compile Include="Model\Magazzino.cs" />
     <Compile Include="Model\Posizione.cs" />
     <Compile Include="Model\Prodotto.cs" />
     <Compile Include="Model\Utente.cs" />

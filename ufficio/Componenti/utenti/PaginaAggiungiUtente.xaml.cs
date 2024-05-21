@@ -38,6 +38,54 @@ namespace ufficio.Componenti.utenti
 
         public void btnSalva_Click(object sender, RoutedEventArgs e)
         {
+            if(txtNome.Text == "")
+            {
+                MessageBox.Show("Inserire il nome");
+                return;
+            }
+            if(txtCognome.Text == "")
+            {
+                MessageBox.Show("Inserire il cognome");
+                return;
+            }
+            if(txtUsername.Text == "")
+            {
+                MessageBox.Show("Inserire lo username");
+                return;
+            }
+            if(txtPassword.Text == "")
+            {
+                MessageBox.Show("Inserire la password");
+                return;
+            }
+            if(txtEmail.Text == "")
+            {
+                MessageBox.Show("Inserire l'email");
+                return;
+            }
+            if(txtTelefono.Text == "")
+            {
+                MessageBox.Show("Inserire il telefono");
+                return;
+            }
+            if(txtIndirizzo.Text == "")
+            {
+                MessageBox.Show("Inserire l'indirizzo");
+                return;
+            }
+            if(txtCitta.Text == "")
+            {
+                MessageBox.Show("Inserire la città");
+                return;
+            }
+            if(cmbRuolo.SelectedItem == null)
+            {
+                MessageBox.Show("Selezionare il ruolo");
+                return;
+            }
+
+
+
             Libreria.Controller.UtenteController utenteController = new Libreria.Controller.UtenteController(db, "Utenti");
             Libreria.Model.Utente utente = new Libreria.Model.Utente();
             utente.Nome = txtNome.Text;

@@ -86,6 +86,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componenti\inventario\PaginaInventarioAggiungi.xaml.cs">
+      <DependentUpon>PaginaInventarioAggiungi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\inventario\PaginaInventarioModifica.xaml.cs">
+      <DependentUpon>PaginaInventarioModifica.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Componenti\posizioni\PaginaAggiungiPosizione.xaml.cs">
       <DependentUpon>PaginaAggiungiPosizione.xaml</DependentUpon>
     </Compile>
@@ -100,6 +106,18 @@
     </Compile>
     <Compile Include="Componenti\posizioni\PaginaPosizioni.xaml.cs">
       <DependentUpon>PaginaPosizioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\prodotti\PaginaAggiungiProdotto.xaml.cs">
+      <DependentUpon>PaginaAggiungiProdotto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\prodotti\PaginaModificaProdotto.xaml.cs">
+      <DependentUpon>PaginaModificaProdotto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\prodotti\PaginaProdotti.xaml.cs">
+      <DependentUpon>PaginaProdotti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Componenti\report\PaginaReport.xaml.cs">
+      <DependentUpon>PaginaReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Componenti\utenti\PaginaAggiungiUtente.xaml.cs">
       <DependentUpon>PaginaAggiungiUtente.xaml</DependentUpon>
@@ -161,6 +179,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Componenti\inventario\PaginaInventarioAggiungi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\inventario\PaginaInventarioModifica.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Componenti\posizioni\PaginaAggiungiPosizione.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +204,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Componenti\posizioni\PaginaPosizioni.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\prodotti\PaginaAggiungiProdotto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\prodotti\PaginaModificaProdotto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\prodotti\PaginaProdotti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Componenti\report\PaginaReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
 
-//TODO: pagina prodotti: possibilità di aggiungere un'ordine, visualizzazione per ordini,
-//modificare il prezzo dei prodotti, chiederne lo spostamento e
-//stabilire quanti prodotti devono esser presenti per ogni punto vendita
-
 namespace ufficio.Componenti
 {
     public partial class Dashboard : UserControl
@@ -41,21 +37,27 @@ namespace ufficio.Componenti
 
         private void btnUtenti_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var dashboard = this.Content;
+            object dashboard = this.Content;
             this.Content = new utenti.PaginaUtenti(db, dashboard);
         }
 
         private void btnPosizioni_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var dashboard = this.Content;
+            object dashboard = this.Content;
             this.Content = new posizioni.PaginaPosizioni(db, dashboard);
         }
 
 
         private void btnImpostazioni_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var dashboard = this.Content;
+            object dashboard = this.Content;
             this.Content = new PaginaImpostazioni(db, dashboard);
+        }
+
+        private void btnProdotti_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            object dashboard = this.Content;
+            Content = new prodotti.PaginaProdotti(db, dashboard);
         }
     }
 }
